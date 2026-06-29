@@ -20,7 +20,7 @@ N           = 100
 Nband       = 10
 L           = 300
 kx          = 0.001           
-switch_y    = 0
+switch_y    = 0  # put 1 for y directional field, 0 for z directional field
 
 Ny = Nz = N
 if switch_y == 1:
