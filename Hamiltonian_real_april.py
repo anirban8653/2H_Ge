@@ -10,7 +10,7 @@ Ev = -0.3622
 Ecbp1 = 0.632
 Ecb = 0.298
 
-p_perp = 0.4829 * hbar/a0/(e*1e-10)*0
+p_perp = 0.4829 * hbar/a0/(e*1e-10)
 p_parallel = 0.6431 * hbar/a0/(e*1e-10)
 
 eff_mass_unit = hbar**2/(2*m0)
@@ -24,12 +24,12 @@ A_1 = -4.3636 * eff_mass_unit/(e*1e-20)
 A_2 = -2.0833 * eff_mass_unit/(e*1e-20)
 A_3 = 2.4545 * eff_mass_unit/(e*1e-20)
 A_4 = -2.7504 * eff_mass_unit/(e*1e-20)
-A_5 = -2.7232 * eff_mass_unit/(e*1e-20)*0
-A_6 = -3.5421 * eff_mass_unit/(e*1e-20)*0
+A_5 = -2.7232 * eff_mass_unit/(e*1e-20)
+A_6 = -3.5421 * eff_mass_unit/(e*1e-20)
 
 Delta1 = 0.2688
 Delta2 = 0.0934
-Delta3 = 0.0908*0
+Delta3 = 0.0908
 
 def build_H_real(kx,N,L):
     a = L / (N + 1)
