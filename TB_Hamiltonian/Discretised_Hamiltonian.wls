@@ -331,3 +331,6 @@ Print["def gso_"<>ToString[NN]<>"(kx, ry, rz):
 	return np.array(",pyString,")"]
 	
 Exit[];
+
+
+
