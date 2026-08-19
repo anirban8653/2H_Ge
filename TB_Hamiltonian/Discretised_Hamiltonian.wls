@@ -100,10 +100,6 @@ Print["Energy at Gamma point: "]
 Print["Evals= ",Evals]
 
 
-(* ::Input:: *)
-(*Print[Chop[H[0.0,0,0]]]*)
-
-
 nPoints=400;
 kpath = N[Subdivide[0,0.1,nPoints]];
 band1 = Transpose[Table[Sort[Eigenvalues[H[i,0,0]]],{i,kpath}]];
@@ -195,11 +191,6 @@ Print["Energy at Gamma point: "]
 Print["Evals= ",Evals]
 (*FullSimplify[Hdis[kx,ky,kz]]*)
 (*FullSimplify[Hdis[0,0,0]]//MatrixForm*)
-
-
-(* ::Input:: *)
-(*Chop[Hdis[L/(NN + 1),0,0,0]]*)
-(*Chop[H[0,0,0]]*)
 
 
 nPoints=400;
@@ -331,6 +322,4 @@ Print["def gso_"<>ToString[NN]<>"(kx, ry, rz):
 	return np.array(",pyString,")"]
 	
 Exit[];
-
-
 
