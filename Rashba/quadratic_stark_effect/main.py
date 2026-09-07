@@ -19,11 +19,13 @@ from Hamiltonian_mathematica_v2 import gso
 # Parameters
 # =========================
 
-N = 50
+N = 100
 Nband = 10
 Ny = Nz = N
 nk = 51
 L = 300
+ncore = 30
+switch = 1  # 1: y-direction, 0: z-direction
 
 lat = kwant.lattice.square(norbs=Nband)
 
@@ -43,7 +45,10 @@ def make_system(kx, Ey):
     # ---------- Onsite ----------
     for y in range(Ny):
         for z in range(Nz):
-            V = -Ey * ((y + 1) * a - L / 2)
+            if switch == 1:
+                V = -Ey * ((y + 1) * a - L / 2)
+            else:
+                V = -Ey * ((z + 1) * a - L / 2)
             syst[lat(y, z)] = V * np.eye(Nband) + gso_cache[(0, 0)]
 
     # ---------- Hoppings ----------
@@ -76,19 +81,19 @@ Ef_values = np.arange(0.00000, 0.000012, 0.000003)
 
 # Ef_values = np.array([0.00005])
 
-print(f"Running over {len(kpoints)} k-points using {10} cores...")
+print(f"Running over {len(kpoints)} k-points using {ncore} cores...")
 for Ef in Ef_values:
     energylist = []
-    with Pool(10) as pool:
+    with Pool(ncore) as pool:
         for result in tqdm(pool.imap(process_kx, kpoints), total=len(kpoints),
                         desc=f"Diagonalizing H with E-field {(Ef * 1e4):.3f} V/µm"):
             energylist.append(result)
     energylist = np.array(energylist)
-    np.savetxt(f"band_data_y_E{(Ef * 1e4):.3f}_size{N}_nk{nk}.dat", energylist)
-    # if flagy == 1:
-    #     np.savetxt(f"band_data_y_E{(Ef * 1e4):.3f}_size{size}_nk{nk}.dat", energylist)
-    # if flagz == 1:  
-    #     np.savetxt(f"band_data_z_E{(Ef * 1e4):.3f}_size{size}_nk{nk}.dat", energylist)
+    # np.savetxt(f"band_data_y_E{(Ef * 1e4):.3f}_size{N}_nk{nk}.dat", energylist)
+    if switch == 1:
+        np.savetxt(f"band_data_y_E{(Ef * 1e4):.3f}_size{N}_nk{nk}.dat", energylist)
+    if switch == 0:  
+        np.savetxt(f"band_data_z_E{(Ef * 1e4):.3f}_size{N}_nk{nk}.dat", energylist)
 
 print("Done. Data saved.")
 
