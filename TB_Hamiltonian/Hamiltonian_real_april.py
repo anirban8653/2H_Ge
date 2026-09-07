@@ -24,7 +24,7 @@ A_1 = -4.3636 * eff_mass_unit/(e*1e-20)
 A_2 = -2.0833 * eff_mass_unit/(e*1e-20)
 A_3 = 2.4545 * eff_mass_unit/(e*1e-20)
 A_4 = -2.7504 * eff_mass_unit/(e*1e-20)
-A_5 = -2.7232 * eff_mass_unit/(e*1e-20)
+A_5 = 2.7232 * eff_mass_unit/(e*1e-20)
 A_6 = -3.5421 * eff_mass_unit/(e*1e-20)
 
 Delta1 = 0.2688

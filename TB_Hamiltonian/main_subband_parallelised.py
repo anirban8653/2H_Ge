@@ -67,7 +67,7 @@ def solve_for_kx(kx):
 # =========================
 if __name__ == "__main__":
 
-    nproc = max(1, cpu_count() - 2)  # leave 2 cores free
+    nproc = 20 #max(1, cpu_count() - 2)  # leave 2 cores free
     print(f"Using {nproc} processes")
 
     with Pool(processes=nproc) as pool:
