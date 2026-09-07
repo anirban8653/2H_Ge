@@ -26,7 +26,7 @@ np.set_printoptions(linewidth=200, suppress=True, precision=5)
 # ==============================================================
 # Parameters
 # ==============================================================
-N = 50
+N = 80
 Nband = 10
 L = 300                       # Angstrom
 Ny = Nz = N
@@ -39,11 +39,11 @@ E_magnitude_V_per_um = None
 E_magnitude = None
 
 theta_values = np.linspace(0.0, 360.0, 151)
-num_processes = min(
-int(os.environ.get("SLURM_CPUS_PER_TASK", os.cpu_count() or 1)),
-len(theta_values),
-) 
-# num_processes = 10
+# num_processes = min(
+# int(os.environ.get("SLURM_CPUS_PER_TASK", os.cpu_count() or 1)),
+# len(theta_values),
+# ) 
+num_processes = 30
 
 
 lat = kwant.lattice.square(norbs=Nband)

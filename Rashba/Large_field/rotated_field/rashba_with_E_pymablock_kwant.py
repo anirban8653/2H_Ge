@@ -30,7 +30,7 @@ for flagy in flags:
     # ---------------------------------
     # Parameters
     # ---------------------------------
-    N = 30
+    N = 100
     kx = 0.001 
     Nband = 10
     L = 300
@@ -41,7 +41,7 @@ for flagy in flags:
     sigma_val = 0.1
     Ef_values = np.linspace(0,emax,nfield)
     # print(Ef_values)
-    nproc = 10
+    nproc = 30
 
 
     print(f"\nBuilding system for N = {N}")
@@ -116,54 +116,54 @@ for flagy in flags:
 
 
 
-    # ---------------------------------
-    # Compute GS at zero field (once)
-    # ---------------------------------
-    syst0 = make_system(kx, 0.0)
-    H0 = syst0.hamiltonian_submatrix(sparse=True)
-    vals0 = eigsh(H0, k=2, sigma=0.0, return_eigenvectors=False)
-    vals0 = np.sort(vals0)
+    # # ---------------------------------
+    # # Compute GS at zero field (once)
+    # # ---------------------------------
+    # syst0 = make_system(kx, 0.0)
+    # H0 = syst0.hamiltonian_submatrix(sparse=True)
+    # vals0 = eigsh(H0, k=2, sigma=0.0, return_eigenvectors=False)
+    # vals0 = np.sort(vals0)
 
-    GS_0_meV = vals0[0] * 1000   # meV
+    # GS_0_meV = vals0[0] * 1000   # meV
 
-    # ---------------------------------
-    # Sweep Ef
-    # ---------------------------------
+    # # ---------------------------------
+    # # Sweep Ef
+    # # ---------------------------------
     
-    results = []
-    for Ef in Ef_values:
+    # results = []
+    # for Ef in Ef_values:
 
-        syst = make_system(kx,  Ef)
-        H = syst.hamiltonian_submatrix(sparse=True)
+    #     syst = make_system(kx,  Ef)
+    #     H = syst.hamiltonian_submatrix(sparse=True)
 
-        vals = eigsh(H, k=2, sigma=sigma_val, return_eigenvectors=False)
-        vals = np.sort(vals)
+    #     vals = eigsh(H, k=2, sigma=sigma_val, return_eigenvectors=False)
+    #     vals = np.sort(vals)
 
-        GS1_meV = vals[0] * 1000
-        GS2_meV = vals[1] * 1000
+    #     GS1_meV = vals[0] * 1000
+    #     GS2_meV = vals[1] * 1000
 
-        # Energy difference (gap) in micro eV
-        shift_microeV = (GS2_meV - GS1_meV) * 1000
+    #     # Energy difference (gap) in micro eV
+    #     shift_microeV = (GS2_meV - GS1_meV) * 1000
 
-        results.append([Ef * 1e4, GS1_meV, GS2_meV, shift_microeV])
+    #     results.append([Ef * 1e4, GS1_meV, GS2_meV, shift_microeV])
 
-        print(f"Ef: {Ef*1e4:.2e}")
+    #     print(f"Ef: {Ef*1e4:.2e}")
 
-    results = np.array(results)
+    # results = np.array(results)
 
 
-    print("\nEf (V/A) | GS1 (meV) | GS2 (meV) | Gap (micro-eV)")
-    print("-" * 65)
+    # print("\nEf (V/A) | GS1 (meV) | GS2 (meV) | Gap (micro-eV)")
+    # print("-" * 65)
 
-    for row in results:
-        print(f"{row[0]:.2e} | {row[1]:<12.6f} | {row[2]:<12.6f} | {row[3]:<12.6f}")
+    # for row in results:
+    #     print(f"{row[0]:.2e} | {row[1]:<12.6f} | {row[2]:<12.6f} | {row[3]:<12.6f}")
 
-    if flagy == 1:
-        np.savetxt(f"numerical_splitting_N{N}_L{L}_emax{(emax*10000):.2f}_y.dat", results, header="Ef (V/um) | GS1 (meV) | GS2 (meV) | Gap (micro-eV)", comments='')
-        print(f"numerical data saved: numerical_splitting_N{N}_L{L}_emax{(emax*10000):.2f}_y.dat")
-    else:
-        np.savetxt(f"numerical_splitting_N{N}_L{L}_emax{(emax*10000):.2f}_z.dat", results, header="Ef (V/um) | GS1 (meV) | GS2 (meV) | Gap (micro-eV)", comments='')
-        print(f"numerical data saved: numerical_splitting_N{N}_L{L}_emax{(emax*10000):.2f}_z.dat")
+    # if flagy == 1:
+    #     np.savetxt(f"numerical_splitting_N{N}_L{L}_emax{(emax*10000):.2f}_y.dat", results, header="Ef (V/um) | GS1 (meV) | GS2 (meV) | Gap (micro-eV)", comments='')
+    #     print(f"numerical data saved: numerical_splitting_N{N}_L{L}_emax{(emax*10000):.2f}_y.dat")
+    # else:
+    #     np.savetxt(f"numerical_splitting_N{N}_L{L}_emax{(emax*10000):.2f}_z.dat", results, header="Ef (V/um) | GS1 (meV) | GS2 (meV) | Gap (micro-eV)", comments='')
+    #     print(f"numerical data saved: numerical_splitting_N{N}_L{L}_emax{(emax*10000):.2f}_z.dat")
 
     print(" ")
     print("-"*30)
