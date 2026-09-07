@@ -18,7 +18,7 @@ start_time = time.time()
 # =========================
 # Parameters
 # =========================
-N = 100
+N = 30
 Nband = 10
 L = 300
 kx_list = np.linspace(-0.02, 0.02, 101)
@@ -67,7 +67,7 @@ def solve_for_kx(kx):
 # =========================
 if __name__ == "__main__":
 
-    nproc = 20 #max(1, cpu_count() - 2)  # leave 2 cores free
+    nproc = 4 #max(1, cpu_count() - 2)  # leave 2 cores free
     print(f"Using {nproc} processes")
 
     with Pool(processes=nproc) as pool:
