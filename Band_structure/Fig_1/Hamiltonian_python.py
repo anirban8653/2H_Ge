@@ -16,16 +16,16 @@ p_parallel = 0.6431 * hbar/a0/(e*1e-10)
 eff_mass_unit = hbar**2/(2*m0)
 
 A_c1_parallel = 1.0 * eff_mass_unit/(e*1e-20)
-A_c2_perp = 3.1579 * eff_mass_unit/(e*1e-20)
+A_c2_perp = 4.1565 * eff_mass_unit/(e*1e-20)
 A_c1_perp = 9.5120 * eff_mass_unit/(e*1e-20)
-A_c2_parallel = 3.3348 * eff_mass_unit/(e*1e-20)
+A_c2_parallel = 2.4091 * eff_mass_unit/(e*1e-20)
 
-A_1 = -5.4167 * eff_mass_unit/(e*1e-20)
-A_2 = -7.3684 * eff_mass_unit/(e*1e-20)
-A_3 = 3.3328 * eff_mass_unit/(e*1e-20)
-A_4 = 5.5263 * eff_mass_unit/(e*1e-20)
-A_5 = 0.2631 * eff_mass_unit/(e*1e-20)
-A_6 = -0.5415 * eff_mass_unit/(e*1e-20)
+A_1 = -4.3636 * eff_mass_unit/(e*1e-20)
+A_2 = -2.0833 * eff_mass_unit/(e*1e-20)
+A_3 = 2.4545 * eff_mass_unit/(e*1e-20)
+A_4 = -2.7504 * eff_mass_unit/(e*1e-20)
+A_5 = -2.7232 * eff_mass_unit/(e*1e-20)
+A_6 = -3.5421 * eff_mass_unit/(e*1e-20)
 
 Delta1 = 0.2688
 Delta2 = 0.0934

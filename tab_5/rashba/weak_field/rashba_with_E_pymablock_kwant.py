@@ -29,14 +29,14 @@ t0 = time.time()
 # ---------------------------------
 # Parameters
 # ---------------------------------
-N = 100 
+N = 50 
 kx = 0.001 
 Nband = 10
 L = 300
 Ny = Nz = N
 emax = 0.5e-5
-flagy = 0
-ncore = 40
+flagy = 1
+ncore = 10
 
 print(f"\nBuilding system for N = {N}")
 

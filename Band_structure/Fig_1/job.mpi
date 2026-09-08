@@ -3,11 +3,11 @@
 #SBATCH -J tab5
 #SBATCH -o job.%j.out
 #SBATCH -e job.%j.err
-#SBATCH -p cpu
-#SBATCH -w x7
+#SBATCH -p quantum
+#SBATCH -w x10
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
-#SBATCH --cpus-per-task=35
+#SBATCH --cpus-per-task=45
 #SBATCH -t 24:00:00
 
 # -------------------------------------------------

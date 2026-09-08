@@ -9,7 +9,7 @@ import numpy as np
 from scipy.sparse.linalg import eigsh
 from multiprocessing import Pool, cpu_count
 from tqdm import tqdm
-from Hamiltonian_real_april import build_H_real
+from Hamiltonian_python import build_H_real
 import time
 # np.set_printoptions(precision=3, suppress=True, linewidth=150)
 start_time = time.time()
@@ -18,10 +18,10 @@ start_time = time.time()
 # =========================
 # Parameters
 # =========================
-N = 30
+N = 100
 Nband = 10
 L = 300
-kx_list = np.linspace(-0.02, 0.02, 101)
+kx_list = np.linspace(-0.02, 0.02, 51)
 
 Ny = Nz = N
 lat = kwant.lattice.square(norbs=Nband)
@@ -67,7 +67,7 @@ def solve_for_kx(kx):
 # =========================
 if __name__ == "__main__":
 
-    nproc = 4 #max(1, cpu_count() - 2)  # leave 2 cores free
+    nproc = 45 #max(1, cpu_count() - 2)  # leave 2 cores free
     print(f"Using {nproc} processes")
 
     with Pool(processes=nproc) as pool:
