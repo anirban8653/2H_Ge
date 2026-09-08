@@ -7,7 +7,7 @@
 #SBATCH -w x7
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
-#SBATCH --cpus-per-task=30
+#SBATCH --cpus-per-task=35
 #SBATCH -t 24:00:00
 
 # -------------------------------------------------
