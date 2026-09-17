@@ -1,0 +1,19 @@
+#!/bin/bash
+
+#SBATCH -J rashba_mpi
+#SBATCH -o job.%j.out
+#SBATCH -e job.%j.err
+#SBATCH -p cpu
+#SBATCH -w x7
+#SBATCH -n 40
+#SBATCH -t 04:00:00
+
+export PATH=/opt/intel/oneapi/mpi/2021.15/bin:$PATH
+export LD_LIBRARY_PATH=/opt/intel/oneapi/mpi/2021.15/lib:$LD_LIBRARY_PATH
+
+export OMP_NUM_THREADS=1
+export OPENBLAS_NUM_THREADS=1
+export MKL_NUM_THREADS=1
+export NUMEXPR_NUM_THREADS=1
+
+/opt/intel/oneapi/mpi/2021.15/bin/mpirun -np $SLURM_NTASKS python3 rashba_with_E_pymablock_kwant_mpi.py
