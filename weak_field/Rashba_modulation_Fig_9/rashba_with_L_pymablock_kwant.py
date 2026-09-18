@@ -177,9 +177,9 @@ for row in results:
 
 if flagy == 1:
     np.savetxt(f"numerical_splitting_E_{(Ef*10000):.2f}_N{N}_y.dat", results, header="Ef (V/um) | GS1 (meV) | GS2 (meV) | Gap (micro-eV)", comments='')
-    print(f"numerical data saved: numerical_splitting_N{N}_L{L}_y.dat")
+    print(f"numerical data saved: numerical_splitting_E_{(Ef*10000):.2f}_N{N}_y.dat")
 else:
-    np.savetxt(f"numerical_splitting_N{N}_L{L}_z.dat", results, header="Ef (V/um) | GS1 (meV) | GS2 (meV) | Gap (micro-eV)", comments='')
+    np.savetxt(f"numerical_splitting_E_{(Ef*10000):.2f}_N{N}_z.dat", results, header="Ef (V/um) | GS1 (meV) | GS2 (meV) | Gap (micro-eV)", comments='')
     print(f"numerical data saved: numerical_splitting_E_{(Ef*10000):.2f}_N{N}_z.dat")
 
 print(" ")
