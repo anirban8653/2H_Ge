@@ -34,7 +34,8 @@ kx = 0.001
 Nband = 10
 L = 300
 Ny = Nz = N
-emax = 0.5e-5
+emax_V_um = 0.05
+emax = emax_V_um * 1e-4
 flagy = 0
 
 print(f"\nBuilding system for N = {N}")
