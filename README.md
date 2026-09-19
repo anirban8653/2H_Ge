@@ -14,7 +14,7 @@ The repository follows the structure of the paper. Top-level folders correspond 
 | `Sec_V_weak_field/` | Section V: Weak-field regime |
 | `Sec_VI_microscopic_origin/` | Section VI: Microscopic origin |
 | `App_B_mx_modulation/` | Appendix B: Effective-mass modulation |
-| `comapre_with_DFT/` | Comparisons with density functional theory (DFT) calculations |
+| `comapre_with_DFT_extra/` | Comparisons with density functional theory (DFT) calculations |
 
 ## Finding the files for a figure
 
