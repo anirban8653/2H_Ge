@@ -14,14 +14,15 @@ Top-level folders follow the sections and appendices of the paper. Within them, 
 | III — Magnetic-field response | 2 | [Sec_III_Zeeman/Fig_2](Sec_III_Zeeman/Fig_2/) | Zeeman splitting and effective $g$ factors versus nanowire size |
 | IV — Electric-field response | 3 | [QSE_FIg_3](Sec_IV_Large_elctric_field/QSE_FIg_3/) | Electric-field-induced band shifts and quadratic Stark effect |
 | IV — Electric-field response | 4 | [Rashba_Fig_4](Sec_IV_Large_elctric_field/Rashba_Fig_4/) | Finite-field dispersion and Rashba splitting: numerical and effective-Hamiltonian results |
-| IV — Electric-field response | 5 | [validity_region_fig_5](Sec_IV_Large_elctric_field/validity_region_fig_5/) | Validity of the linear-in-$k_x$ Rashba approximation |
-| IV — Electric-field response | 6 | [Rashba_modulation_fig_6](Sec_IV_Large_elctric_field/Rashba_modulation_fig_6/) | Nonlinear electric-field dependence and angular anisotropy of the Rashba coefficient |
+| IV — Electric-field response | 6 | [Rashba_modulation_fig_5](Sec_IV_Large_elctric_field/Rashba_modulation_fig_5/) | Nonlinear electric-field dependence and angular anisotropy of the Rashba coefficient |
+| IV — Electric-field response | 5 | [validity_region_fig_6](Sec_IV_Large_elctric_field/validity_region_fig_6/) | Validity of the linear-in-$k_x$ Rashba approximation |
 | V — Weak-field Rashba coupling | 7 | [Comapring_splitting_Fig_7](Sec_V_weak_field/Comapring_splitting_Fig_7/) | Numerical splitting compared with second- and fourth-order perturbative results |
 | V — Weak-field Rashba coupling | 8 | [validity_region_fig_8](Sec_V_weak_field/validity_region_fig_8/) | Validity of the second-order weak-field expansion for different nanowire sizes |
 | V — Weak-field Rashba coupling | 9 | [Rashba_modulation_Fig_9](Sec_V_weak_field/Rashba_modulation_Fig_9/) | Electric-field and cross-sectional-size dependence of the weak-field Rashba coefficient |
 | VI — Microscopic origin of the Rashba coupling | 10 | [Fig_10](Sec_VI_microscopic_origin/Fig_10/) | Intermediate-subband contributions and bulk-band character weights |
 | VI — Microscopic origin of the Rashba coupling | 11 | [Fig_11](Sec_VI_microscopic_origin/Fig_11/) | Symmetry-allowed virtual coupling processes |
 | Appendix B — Effective mass calculation | 12 | [Fig_12](App_B_mx_modulation/Fig_12/) | Confinement dependence of the longitudinal effective mass |
+| Appendix G — Dominant state calculation | 13 | [Fig_13](App_G_dominant_subband_states/Fig_13/) | Spatial distribution of the probability density of the dominant states |
 
 Additional bulk-band comparisons with density functional theory (DFT), together with effective-mass calculations, are in [comapre_with_DFT](comapre_with_DFT/).
 
