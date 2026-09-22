@@ -6,7 +6,7 @@ The calculations use a ten-band $\mathbf{k}\cdot\mathbf{p}$ Hamiltonian to inves
 
 ## Organization and manuscript correspondence
 
-Top-level folders follow the sections and appendices of the paper. Within them, each figure folder collects the corresponding calculation scripts, saved data, and/or plotting notebooks and exports. Figure numbers refer to the manuscript, rather than numbering within each section. Folder names and capitalization in the links below match the repository exactly.
+Top-level folders correspond to the paper's sections and appendices. Within them, each figure folder collects the corresponding calculation scripts, saved data, and/or plotting notebooks and exports. Figure numbers refer to the manuscript, rather than numbering within each section. Folder names and capitalization in the links below match the repository exactly.
 
 | Manuscript section | Figure | Folder | Topic |
 | --- | --- | --- | --- |
@@ -24,9 +24,9 @@ Top-level folders follow the sections and appendices of the paper. Within them, 
 | Appendix B — Effective mass calculation | 12 | [Fig_12](App_B_mx_modulation/Fig_12/) | Confinement dependence of the longitudinal effective mass |
 | Appendix G — Dominant state calculation | 13 | [Fig_13](App_G_dominant_subband_states/Fig_13/) | Spatial distribution of the probability density of the dominant states |
 
-Additional bulk-band comparisons with density functional theory (DFT), together with effective-mass calculations, are in [comapre_with_DFT](comapre_with_DFT/).
+Additional bulk-band comparisons with density functional theory (DFT), together with effective-mass calculations, are in [compare_with_DFT](compare_with_DFT/).
 
-**The two Rashba treatments:** Section IV includes the transverse electric field in the reference Hamiltonian and expands in longitudinal momentum $k_x$. Section V treats both the electric field and momentum perturbatively in a weak-field Schrieffer–Wolff expansion. Their validity plots therefore test different approximations.
+**The two Rashba treatments:** Section IV includes the transverse electric field in the reference Hamiltonian and expands in longitudinal momentum $k_x$. Section V treats both the electric field and momentum perturbatively in a weak-field Schrieffer–Wolff expansion. Their validity plots, therefore, test different approximations.
 
 Figure folders also contain local Hamiltonian modules where needed, such as `Hamiltonian_mathematica.py`. These are Python modules. Keep each script with its accompanying module; similarly named modules in different folders should not be assumed interchangeable.
 
