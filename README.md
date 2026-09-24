@@ -61,6 +61,6 @@ In the inspected nanowire scripts, lengths are expressed in angstroms and moment
 - `.dat` files contain saved numerical datasets; column layouts and headers vary by calculation.
 - `.npy` files contain NumPy arrays, including the effective-mass data for Figure 12.
 - `.ipynb` files contain plotting and analysis code, sometimes with multiple figure variants.
-- `.pdf`, `.svg`, and `.png` files contain figure exports, component panels, or diagnostic plots.
+- `.pdf` and `.svg` files contain figure exports, component panels, or diagnostic plots.
 
 Use the section and figure folder mapping to locate the relevant materials, rather than relying solely on an exported filename.
