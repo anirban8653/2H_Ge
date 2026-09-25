@@ -36,7 +36,7 @@ L = 300
 Ny = Nz = N
 emax_V_um = 1.2
 emax_V_A = emax_V_um * 1e-4
-flagy = int(input("1 or 0 \n chose : "))
+flagy = 1
 ncore = 25
 Ef_values = np.linspace(0.0, emax_V_A, 21)
 
@@ -224,7 +224,7 @@ def main():
 
     filename = (
         f"numerical_splitting_N{N}_L{L}_"
-        f"emax{emax_V_A * 1e4:.2f}_{direction}.dat"
+        f"emax{emax_V_A * 1e4:.3f}_{direction}.dat"
     )
 
     np.savetxt(
@@ -333,15 +333,15 @@ if __name__ == "__main__":
     
 
     if flagy == 1:
-        np.savetxt(f"Pymablock_Y_kx{kx_value}_emax_{(emax_V_um):.2f}_N{N}_L{L}.dat",
+        np.savetxt(f"Pymablock_Y_kx{kx_value}_emax_{(emax_V_um):.3f}_N{N}_L{L}.dat",
                 rashba_list,
                 header="E  alpha(eV.A)  gap_meV_2nd  gap_meV_4th")
-        print(f"Exported: Pymablock_Y_kx{kx_value}_emax_{(emax_V_um):.2f}_N{N}_L{L}.dat")
+        print(f"Exported: Pymablock_Y_kx{kx_value}_emax_{(emax_V_um):.3f}_N{N}_L{L}.dat")
     else:
-        np.savetxt(f"Pymablock_Z_kx{kx_value}_emax_{(emax_V_um):.2f}_N{N}_L{L}.dat",
+        np.savetxt(f"Pymablock_Z_kx{kx_value}_emax_{(emax_V_um):.3f}_N{N}_L{L}.dat",
                 rashba_list,
                 header="E  alpha(eV.A)  gap_meV_2nd  gap_meV_4th")
-        print(f"Exported: Pymablock_Z_kx{kx_value}_emax_{(emax_V_um):.2f}_N{N}_L{L}.dat")
+        print(f"Exported: Pymablock_Z_kx{kx_value}_emax_{(emax_V_um):.3f}_N{N}_L{L}.dat")
 
 
 
