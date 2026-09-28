@@ -1,8 +1,14 @@
 cff-version: 1.2.0
-message: "If you use this code and data, please cite this software."
+message: "If you use this code and data, please cite the related paper."
 type: software
-title: "2H_Ge: Codes and data for calculations of hexagonal germanium"
+title: "2H_Ge: Codes and data for calculations of hexagonal germanium nanowire"
 authors:
   - family-names: "Das"
     given-names: "Anirban"
+  - family-names: "Kolok"
+    given-names: "Baksa"
+  - family-names: "Varjas"
+    given-names: "Daniel"
+  - family-names: "Palyi"
+    given-names: "Andras"
 repository-code: "https://github.com/anirban8653/2H_Ge"
