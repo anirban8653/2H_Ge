@@ -1,0 +1,8 @@
+cff-version: 1.2.0
+message: "If you use this code and data, please cite this software."
+type: software
+title: "2H_Ge: Codes and data for calculations of hexagonal germanium"
+authors:
+  - family-names: "Das"
+    given-names: "Anirban"
+repository-code: "https://github.com/anirban8653/2H_Ge"
