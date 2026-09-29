@@ -17,7 +17,7 @@ from scipy.linalg import eigh, qr
 from scipy.sparse.linalg import eigsh
 from tqdm import tqdm
 
-from Hamiltonian_mathematica_v2 import dgso, gso, psi_new_basis
+from Hamiltonian_mathematica import dgso, gso, psi_new_basis
 
 
 np.set_printoptions(linewidth=200, suppress=True, precision=5)
@@ -26,7 +26,7 @@ np.set_printoptions(linewidth=200, suppress=True, precision=5)
 # ==============================================================
 # Parameters
 # ==============================================================
-N = 50
+N = 100
 Nband = 10
 L = 300                       # Angstrom
 Ny = Nz = N
@@ -43,7 +43,7 @@ num_processes = min(
 int(os.environ.get("SLURM_CPUS_PER_TASK", os.cpu_count() or 1)),
 len(theta_values),
 ) 
-# num_processes = 10
+# num_processes = 48
 
 
 lat = kwant.lattice.square(norbs=Nband)
@@ -157,15 +157,7 @@ def make_system_E(direction):
 # One angular point
 # ==============================================================
 def compute_one_theta(theta_deg):
-    """
-    Calculate numerical and perturbative splittings for one field angle.
-
-    theta = 0 degrees   -> E || z
-    theta = 90 degrees  -> E || y
-    """
-
     theta_rad = np.deg2rad(theta_deg)
-
     Ey = E_magnitude * np.sin(theta_rad)
     Ez = E_magnitude * np.cos(theta_rad)
 
@@ -179,21 +171,21 @@ def compute_one_theta(theta_deg):
     # Full numerical calculation
     # ----------------------------------------------------------
     H0_theta = H_kx0_base + Ey * V_Ey + Ez * V_Ez
-    H_numerical = H_numerical_base + Ey * V_Ey + Ez * V_Ez
+    # H_numerical = H_numerical_base + Ey * V_Ey + Ez * V_Ez
 
-    numerical_eigenvalues = eigsh(
-        H_numerical,
-        k=2,
-        sigma=sigma_val,
-        return_eigenvectors=False,
-    )
-    numerical_eigenvalues = np.sort(numerical_eigenvalues)
+    # numerical_eigenvalues = eigsh(
+    #     H_numerical,
+    #     k=2,
+    #     sigma=sigma_val,
+    #     return_eigenvectors=False,
+    # )
+    # numerical_eigenvalues = np.sort(numerical_eigenvalues)
 
-    GS1_meV = numerical_eigenvalues[0] * 1.0e3
-    GS2_meV = numerical_eigenvalues[1] * 1.0e3
-    numerical_gap_microeV = (
-        numerical_eigenvalues[1] - numerical_eigenvalues[0]
-    ) * 1.0e6
+    # GS1_meV = numerical_eigenvalues[0] * 1.0e3
+    # GS2_meV = numerical_eigenvalues[1] * 1.0e3
+    # numerical_gap_microeV = (
+    #     numerical_eigenvalues[1] - numerical_eigenvalues[0]
+    # ) * 1.0e6
 
     # ----------------------------------------------------------
     # Perturbative calculation: the electric field is included exactly
@@ -247,9 +239,9 @@ def compute_one_theta(theta_deg):
         float(theta_deg),
         float(Ey * 1.0e4),
         float(Ez * 1.0e4),
-        float(GS1_meV),
-        float(GS2_meV),
-        float(numerical_gap_microeV),
+        # float(GS1_meV),
+        # float(GS2_meV),
+        # float(numerical_gap_microeV),
         float(alpha_eVA),
         float(perturbative_gap_k1_microeV)
     )
@@ -289,7 +281,7 @@ if __name__ == "__main__":
 
     header = (
         "theta_deg  Ey_V_per_um  Ez_V_per_um  "
-        "GS1_meV  GS2_meV  numerical_gap_microeV  "
+        # "GS1_meV  GS2_meV  numerical_gap_microeV  "
         "alpha_eV_A  perturbative_gap_k1_microeV  "
     )
 
