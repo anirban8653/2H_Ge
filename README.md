@@ -10,25 +10,27 @@ Top-level folders correspond to the paper's sections and appendices. Within them
 
 | Manuscript section | Figure | Folder | Topic |
 | --- | --- | --- | --- |
-| II — Model of 2H-Ge nanowires | 1 | [Sec_II_Band_structure/Fig_1](Sec_II_Band_structure/Fig_1/) | Crystal and nanowire geometry, bulk bands, and confined valence subbands |
-| III — Magnetic-field response | 2 | [Sec_III_Zeeman/Fig_2](Sec_III_Zeeman/Fig_2/) | Zeeman splitting and effective $g$ factors versus nanowire size |
+| II — Model of 2H-Ge nanowires | 1 | [Sec_II_Bulkband_and_subband/Fig_1](Sec_II_Bulkband_and_subband/Fig_1/) | Crystal and nanowire geometry, bulk bands, and confined valence subbands |
+| III — Magnetic-field response | 2 | [Sec_III_Zeeman_effect/Fig_2](Sec_III_Zeeman_effect/Fig_2/) | Zeeman splitting and effective $g$ factors versus nanowire size |
 | IV — Electric-field response | 3 | [QSE_FIg_3](Sec_IV_Large_elctric_field/QSE_FIg_3/) | Electric-field-induced band shifts and quadratic Stark effect |
 | IV — Electric-field response | 4 | [Rashba_Fig_4](Sec_IV_Large_elctric_field/Rashba_Fig_4/) | Finite-field dispersion and Rashba splitting: numerical and effective-Hamiltonian results |
-| IV — Electric-field response | 6 | [Rashba_modulation_fig_5](Sec_IV_Large_elctric_field/Rashba_modulation_fig_5/) | Nonlinear electric-field dependence and angular anisotropy of the Rashba coefficient |
-| IV — Electric-field response | 5 | [validity_region_fig_6](Sec_IV_Large_elctric_field/validity_region_fig_6/) | Validity of the linear-in-$k_x$ Rashba approximation |
-| V — Weak-field Rashba coupling | 7 | [Comapring_splitting_Fig_7](Sec_V_weak_field/Comapring_splitting_Fig_7/) | Numerical splitting compared with second- and fourth-order perturbative results |
-| V — Weak-field Rashba coupling | 8 | [validity_region_fig_8](Sec_V_weak_field/validity_region_fig_8/) | Validity of the second-order weak-field expansion for different nanowire sizes |
-| V — Weak-field Rashba coupling | 9 | [Rashba_modulation_Fig_9](Sec_V_weak_field/Rashba_modulation_Fig_9/) | Electric-field and cross-sectional-size dependence of the weak-field Rashba coefficient |
-| VI — Microscopic origin of the Rashba coupling | 10 | [Fig_10](Sec_VI_microscopic_origin/Fig_10/) | Intermediate-subband contributions and bulk-band character weights |
-| VI — Microscopic origin of the Rashba coupling | 11 | [Fig_11](Sec_VI_microscopic_origin/Fig_11/) | Symmetry-allowed virtual coupling processes |
-| Appendix B — Effective mass calculation | 12 | [Fig_12](App_B_mx_modulation/Fig_12/) | Confinement dependence of the longitudinal effective mass |
-| Appendix G — Dominant state calculation | 13 | [Fig_13](App_G_dominant_subband_states/Fig_13/) | Spatial distribution of the probability density of the dominant states |
+| IV — Electric-field response | 5 | [Rashba_modulation_fig_5](Sec_IV_Large_elctric_field/Rashba_modulation_fig_5/) | Nonlinear electric-field dependence and angular anisotropy of the Rashba coefficient |
+| IV — Electric-field response | 6 | [validity_region_fig_6](Sec_IV_Large_elctric_field/validity_region_fig_6/) | Validity of the linear-in-$k_x$ Rashba approximation |
+| V — Weak-field Rashba coupling | 7 | [Comapring_splitting_Fig_7](Sec_V_Small_electric_field/Comapring_splitting_Fig_7/) | Numerical splitting compared with second- and fourth-order perturbative results |
+| V — Weak-field Rashba coupling | 8 | [validity_region_fig_8](Sec_V_Small_electric_field/validity_region_fig_8/) | Validity of the second-order weak-field expansion for different nanowire sizes |
+| V — Weak-field Rashba coupling | 9 | [Rashba_modulation_Fig_9](Sec_V_Small_electric_field/Rashba_modulation_Fig_9/) | Electric-field and cross-sectional-size dependence of the weak-field Rashba coefficient |
+| VI — Microscopic origin of the Rashba coupling | 10 | [Fig_10](Sec_VI_Microscopic_origin_of_rashba/Fig_10/) | Intermediate-subband contributions and bulk-band character weights |
+| VI — Microscopic origin of the Rashba coupling | 11 | [Fig_11](Sec_VI_Microscopic_origin_of_rashba/Fig_11/) | Symmetry-allowed virtual coupling processes |
+| Appendix B — Effective mass calculation | 12 | [Fig_12](App_B_Effective_mass_modulation/Fig_12/) | Confinement dependence of the longitudinal effective mass |
+| Appendix G — Dominant state calculation | 13 | [Fig_13](App_G_Dominant_subband_states/Fig_13/) | Spatial distribution of the probability density of the dominant states |
 
-Additional bulk-band comparisons with density functional theory (DFT), together with effective-mass calculations, are in [compare_with_DFT](compare_with_DFT/).
+Additional bulk-band comparisons with density functional theory (DFT), together with effective-mass calculations, are in [compare_with_DFT_data](compare_with_DFT_data/).
 
 **The two Rashba treatments:** Section IV includes the transverse electric field in the reference Hamiltonian and expands in longitudinal momentum $k_x$. Section V treats both the electric field and momentum perturbatively in a weak-field Schrieffer–Wolff expansion. Their validity plots, therefore, test different approximations.
 
 Figure folders also contain local Hamiltonian modules where needed, such as `Hamiltonian_mathematica.py`. These are Python modules. Keep each script with its accompanying module; similarly named modules in different folders should not be assumed interchangeable.
+
+The updated combined figure exports are [Fig-4.pdf](Sec_IV_Large_elctric_field/Rashba_Fig_4/Fig-4.pdf) and [Fig-5.pdf](Sec_IV_Large_elctric_field/Rashba_modulation_fig_5/Fig-5.pdf), with SVG versions in the same folders. For Figure 5, `plot_only_y_and_z_direction.ipynb` plots the field dependence for the y and z directions, while `peanut_plot.ipynb` plots the angular dependence in the yz plane. These notebooks also include spin-orbit-length plots. The angular convention is $\theta=0^\circ$ for a field along +z and $\theta=90^\circ$ for a field along +y.
 
 The DFT comparison folder contains `hamiltonian_bulk.py`, `main_numerical_eff_mass.py`, `band_fit.ipynb`, and the supplied bulk-band datasets.
 
@@ -48,7 +50,7 @@ To rerun a calculation:
 For example, after configuring the parameters and process count for Figure 1:
 
 ```bash
-cd Sec_II_Band_structure/Fig_1
+cd Sec_II_Bulkband_and_subband/Fig_1
 python main_subband_parallelised.py
 ```
 
