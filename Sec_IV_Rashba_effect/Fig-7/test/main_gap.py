@@ -1,116 +1,58 @@
+import time
+from functools import partial
+from multiprocessing import Pool
+
 import kwant
 import numpy as np
 from scipy.sparse.linalg import eigsh
-import time
-from multiprocessing import Pool
 from tqdm import tqdm
 
-# =========================
-# TIMER START
-# =========================
-t0 = time.time()
-
-# =========================
-# Import Hamiltonian blocks
-# =========================
-# from hamiltonian_mathematica_april import gso_50
 from Hamiltonian_mathematica import gso
 
 # =========================
 # Parameters
 # =========================
-
-N = 80
-Nband = 10
+N = 30                 # sites along y and z
 Ny = Nz = N
+Nband = 10             # orbitals per site
+L = 300                # cross-section size
 nk = 25
-L = 300
 ncore = 4
-flag = 1
+field_axis = "y"       # direction of the applied E-field: "y" or "z"
 
-sigma_c = 0.16
-sigma_v = 0.13
+sigma_v = 0.13         # shift-invert target for valence states (eV)
+sigma_c = 0.16         # shift-invert target for conduction states (eV)
+num_eigs = 2
 
-
-kpoints = np.linspace(
-    -0.0028,
-    0.0028,
-    nk,
-    endpoint=True
-)
-
-# Electric fields in the internal units used by the Hamiltonian.
-# Multiplication by 1e4 converts them to V/µm.
-Ef_values = np.linspace(0e-4, 15.0e-4, 15)
-# Ef_values = np.linspace(11.1e-4, 15.5e-4, 5)
-# Ef_values = Ef_values[11:12]
-
-# Ef_values = [
-#    0.0,
-#    0.3e-5,
-#    0.6e-5,
-#     0.9e-5,
-# ]
-
-
-
+kpoints = np.linspace(-0.0028, 0.0028, nk)
+Ef_values = np.linspace(0.0, 15.0e-4, 15)
 
 lat = kwant.lattice.square(norbs=Nband)
+HEADER_BANDS = "kx  valence1  valence2  conduction1  conduction2  band_gap"
+HEADER_GAP = "Ey_internal  Ey_V_per_um  fundamental_band_gap_eV"
 
 
 # =========================
 # System builder
 # =========================
-def make_system(kx, Ey):
-
+def make_system(kx, Ef):
     syst = kwant.Builder()
     a = L / (Ny + 1)
 
-    # Precompute gso blocks for this kx
-    gso_cache = {}
+    blocks = {(dy, dz): gso(a, kx, dy, dz)
+              for dy in (-1, 0, 1) for dz in (-1, 0, 1)}
 
-    for dy in [-1, 0, 1]:
-        for dz in [-1, 0, 1]:
-
-            gso_cache[(dy, dz)] = gso(
-                a,
-                kx,
-                dy,
-                dz
-            )
-
-    # ---------- Onsite ----------
+    # Onsite: Hamiltonian block plus linear electrostatic potential
     for y in range(Ny):
         for z in range(Nz):
-            if flag == 1:
+            coord = y if field_axis == "y" else z
+            V = -Ef * ((coord + 1) * a - L / 2)
+            syst[lat(y, z)] = V * np.eye(Nband) + blocks[(0, 0)]
 
-                V = -Ey * (
-                    (y + 1) * a - L / 2
-                )
-            elif flag == 0:
-                V = -Ey * (
-                    (z + 1) * a - L / 2
-                )                
-
-            syst[lat(y, z)] = (
-                V * np.eye(Nband)
-                + gso_cache[(0, 0)]
-            )
-
-    # ---------- Hoppings ----------
-    for dy in [-1, 0, 1]:
-        for dz in [-1, 0, 1]:
-
-            if dy == 0 and dz == 0:
-                continue
-
-            syst[
-                kwant.builder.HoppingKind(
-                    (dy, dz),
-                    lat,
-                    lat
-                )
-            ] = gso_cache[(dy, dz)]
+    # Hoppings to all 8 neighbours
+    for (dy, dz), block in blocks.items():
+        if (dy, dz) != (0, 0):
+            syst[kwant.builder.HoppingKind((dy, dz), lat, lat)] = block
 
     return syst.finalized()
 
@@ -118,218 +60,52 @@ def make_system(kx, Ey):
 # =========================
 # Diagonalization for one kx
 # =========================
-def process_kx(kx):
-    """
-    Compute two valence-band eigenvalues near 0 eV,
-    two conduction-band eigenvalues near 0.3 eV,
-    and the direct band gap for one value of kx.
+def process_kx(kx, Ef):
+    """Return [kx, valence1, valence2, conduction1, conduction2, direct_gap]."""
+    H = make_system(kx, Ef).hamiltonian_submatrix(sparse=True)
 
-    Returns
-    -------
-    [
-        kx,
-        valence1,
-        valence2,
-        conduction1,
-        conduction2,
-        band_gap
-    ]
-    """
+    w_v = np.sort(np.real(eigsh(H, k=num_eigs, sigma=sigma_v,
+                                return_eigenvectors=False)))
+    w_c = np.sort(np.real(eigsh(H, k=num_eigs, sigma=sigma_c,
+                                return_eigenvectors=False)))
 
-    syst = make_system(kx, Ef)
-
-    H = syst.hamiltonian_submatrix(
-        sparse=True
-    )
-
-    num_eigenvectors = 2
-
-    # Valence-band states near 0 eV
-    w_valence = eigsh(
-        H,
-        k=num_eigenvectors,
-        sigma=sigma_v,
-        return_eigenvectors=False
-    )
-
-    w_valence = np.sort(
-        np.real(w_valence)
-    )
-
-    valence1 = w_valence[0]
-    valence2 = w_valence[1]
-    valence_band_maximum = np.max(w_valence)
-
-    # Conduction-band states near 0.3 eV
-    w_conduction = eigsh(
-        H,
-        k=num_eigenvectors,
-        sigma=sigma_c,
-        return_eigenvectors=False
-    )
-
-    w_conduction = np.sort(
-        np.real(w_conduction)
-    )
-
-    conduction1 = w_conduction[0]
-    conduction2 = w_conduction[1]
-    conduction_band_minimum = np.min(w_conduction)
-
-    # Direct gap at this kx
-    band_gap = (
-        conduction_band_minimum
-        - valence_band_maximum
-    )
-
-    return [
-        kx,
-        valence1,
-        valence2,
-        conduction1,
-        conduction2,
-        band_gap
-    ]
+    return [kx, w_v[0], w_v[1], w_c[0], w_c[1], w_c.min() - w_v.max()]
 
 
 # =========================
 # Main calculation
 # =========================
-print(
-    f"Running over {len(kpoints)} k-points "
-    f"using {ncore} cores..."
-)
+def main():
+    t0 = time.time()
+    print(f"Running over {nk} k-points using {ncore} cores...")
 
+    gap_summary = []
+    for Ef in Ef_values:
+        E_um = Ef * 1e4  # V/µm
 
-gap_summary = []
-
-for Ef in Ef_values:
-
-    energylist = []
-
-    with Pool(ncore) as pool:
-
-        results = pool.imap(
-            process_kx,
-            kpoints
-        )
-
-        for result in tqdm(
-            results,
-            total=len(kpoints),
-            desc=(
-                f"Diagonalizing H with E-field "
-                f"{(Ef * 1e4):.3f} V/µm"
+        with Pool(ncore) as pool:
+            results = pool.imap(partial(process_kx, Ef=Ef), kpoints)
+            energylist = np.asarray(
+                list(tqdm(results, total=nk,
+                          desc=f"Diagonalizing H with E-field {E_um:.3f} V/µm")),
+                dtype=float,
             )
-        ):
-            energylist.append(result)
 
-    energylist = np.asarray(
-        energylist,
-        dtype=float
-    )
+        np.savetxt(f"band_data_{field_axis}_E{E_um:.3f}_size{N}_nk{nk}.dat",
+                   energylist, fmt="%.12e", header=HEADER_BANDS)
 
-    if flag == 1:
-        output_filename = (
-            f"band_data_y_E{(Ef * 1e4):.3f}"
-            f"_size{N}_nk{nk}.dat"
-        )
+        overall_gap = energylist[:, 3].min() - energylist[:, 2].max()
+        gap_summary.append([Ef, E_um, overall_gap])
+        print(f"Overall fundamental band gap for E-field {E_um:.3f} V/µm: "
+              f"{overall_gap:.12e} eV")
 
-        np.savetxt(
-            output_filename,
-            energylist,
-            fmt="%.12e",
-            header=(
-                "kx  "
-                "valence1  valence2  "
-                "conduction1  conduction2  "
-                "band_gap"
-            )
-        )
-    else:
+    np.savetxt(f"band_gap_vs_Ey_size{N}_nk{nk}_{field_axis}.dat",
+               np.asarray(gap_summary), fmt="%.12e", header=HEADER_GAP)
+    print("Done. Data saved.")
 
-        output_filename = (
-                    f"band_data_z_E{(Ef * 1e4):.3f}"
-                    f"_size{N}_nk{nk}.dat"
-                )
-        
-        np.savetxt(
-            output_filename,
-            energylist,
-            fmt="%.12e",
-            header=(
-                "kx  "
-                "valence1  valence2  "
-                "conduction1  conduction2  "
-                "band_gap"
-            )
-        )
+    mins, secs = divmod(time.time() - t0, 60)
+    print(f"Execution time: {int(mins)} min {secs:.2f} sec")
 
 
-    overall_band_gap = (
-        np.min(energylist[:, 3])
-        - np.max(energylist[:, 2])
-    )
-
-    gap_summary.append([
-        Ef,
-        Ef * 1e4,
-        overall_band_gap
-    ])
-
-    print(
-        f"Overall fundamental band gap for "
-        f"E-field {(Ef * 1e4):.3f} V/µm: "
-        f"{overall_band_gap:.12e} eV"
-    )
-
-gap_summary = np.asarray(
-    gap_summary,
-    dtype=float
-)
-
-if flag == 1:
-    gap_output_filename = (
-        f"band_gap_vs_Ey_size{N}_nk{nk}_y.dat"
-    )
-
-elif flag == 0:
-    gap_output_filename = (
-        f"band_gap_vs_Ey_size{N}_nk{nk}_z.dat"
-    )
-
-np.savetxt(
-    gap_output_filename,
-    gap_summary,
-    fmt="%.12e",
-    header=(
-        "Ey_internal  "
-        "Ey_V_per_um  "
-        "fundamental_band_gap_eV"
-    )
-)
-
-print("Done. Data saved.")
-
-
-# =========================
-# Timer
-# =========================
-t1 = time.time()
-
-mins, secs = divmod(
-    t1 - t0,
-    60
-)
-
-print(
-    f"Execution time: "
-    f"{int(mins)} min {secs:.2f} sec"
-)
-
-
-
-
-
-
-
+if __name__ == "__main__":
+    main()
