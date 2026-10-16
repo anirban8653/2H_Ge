@@ -1,68 +1,65 @@
 # 2H-Ge nanowires: code, data, and figures
 
-This repository contains numerical codes, datasets, plotting notebooks, and figure exports supporting the manuscript **“Spin-orbit interaction and g-tensor anisotropy of holes in nanowires of hexagonal germanium”** by Anirban Das, Baksa Kolok, Dániel Varjas, and András Pályi.
+This repository contains numerical codes, datasets, plotting notebooks, and figure exports supporting the manuscript **"Spin-orbit interaction and g-tensor anisotropy of holes in nanowires of hexagonal germanium"** by Anirban Das, Baksa Kolok, Dániel Varjas, and András Pályi.
 
-The calculations use a ten-band $\mathbf{k}\cdot\mathbf{p}$ Hamiltonian to investigate confined hole states in hexagonal germanium (2H-Ge) nanowires, including their band structure, anisotropic magnetic response, electric-field-induced Stark shifts and Rashba splitting, and the microscopic origin of the Rashba coupling.
+The calculations use a ten-band $\mathbf{k}\cdot\mathbf{p}$ Hamiltonian to study confined hole states in hexagonal germanium (2H-Ge) nanowires: band structure, anisotropic magnetic response, electric-field-induced Stark shifts and Rashba splitting, and the microscopic origin of the Rashba coupling.
 
-## Organization and manuscript correspondence
+## Repository layout and manuscript correspondence
 
-Top-level folders correspond to the paper's sections and appendices. Within them, each figure folder collects the corresponding calculation scripts, saved data, and/or plotting notebooks and exports. Figure numbers refer to the manuscript, rather than numbering within each section. Folder names and capitalization in the links below match the repository exactly.
+Top-level folders are named after the manuscript sections (`Sec_*`), appendices (`App_*`), and supplementary material (`Extra`). Each `Fig_N` folder holds the calculation scripts, saved data, plotting notebooks, and figure exports for manuscript Figure N. Folder names and capitalization below match the repository exactly (note `FIg_3`).
 
-| Manuscript section | Figure | Folder | Topic |
+| Manuscript part | Figure | Folder | Topic |
 | --- | --- | --- | --- |
-| II — Model of 2H-Ge nanowires | 1 | [Sec_II_Bulkband_and_subband/Fig_1](Sec_II_Bulkband_and_subband/Fig_1/) | Crystal and nanowire geometry, bulk bands, and confined valence subbands |
-| III — Magnetic-field response | 2 | [Sec_III_Zeeman_effect/Fig_2](Sec_III_Zeeman_effect/Fig_2/) | Zeeman splitting and effective $g$ factors versus nanowire size |
-| IV — Electric-field response | 3 | [QSE_FIg_3](Sec_IV_Large_elctric_field/QSE_FIg_3/) | Electric-field-induced band shifts and quadratic Stark effect |
-| IV — Electric-field response | 4 | [Rashba_Fig_4](Sec_IV_Large_elctric_field/Rashba_Fig_4/) | Finite-field dispersion and Rashba splitting: numerical and effective-Hamiltonian results |
-| IV — Electric-field response | 5 | [Rashba_modulation_fig_5](Sec_IV_Large_elctric_field/Rashba_modulation_fig_5/) | Nonlinear electric-field dependence and angular anisotropy of the Rashba coefficient |
-| IV — Electric-field response | 6 | [validity_region_fig_6](Sec_IV_Large_elctric_field/validity_region_fig_6/) | Validity of the linear-in-$k_x$ Rashba approximation |
-| V — Weak-field Rashba coupling | 7 | [Comapring_splitting_Fig_7](Sec_V_Small_electric_field/Comapring_splitting_Fig_7/) | Numerical splitting compared with second- and fourth-order perturbative results |
-| V — Weak-field Rashba coupling | 8 | [validity_region_fig_8](Sec_V_Small_electric_field/validity_region_fig_8/) | Validity of the second-order weak-field expansion for different nanowire sizes |
-| V — Weak-field Rashba coupling | 9 | [Rashba_modulation_Fig_9](Sec_V_Small_electric_field/Rashba_modulation_Fig_9/) | Electric-field and cross-sectional-size dependence of the weak-field Rashba coefficient |
-| VI — Microscopic origin of the Rashba coupling | 10 | [Fig_10](Sec_VI_Microscopic_origin_of_rashba/Fig_10/) | Intermediate-subband contributions and bulk-band character weights |
-| VI — Microscopic origin of the Rashba coupling | 11 | [Fig_11](Sec_VI_Microscopic_origin_of_rashba/Fig_11/) | Symmetry-allowed virtual coupling processes |
-| Appendix B — Effective mass calculation | 12 | [Fig_12](App_B_Effective_mass_modulation/Fig_12/) | Confinement dependence of the longitudinal effective mass |
-| Appendix G — Dominant state calculation | 13 | [Fig_13](App_G_Dominant_subband_states/Fig_13/) | Spatial distribution of the probability density of the dominant states |
+| Sec. II: Model | 1 | [`Sec_II/Fig_1`](Sec_II/Fig_1) | Bulk bands, confined valence subbands, and Hamiltonian checks |
+| Sec. III: Magnetic-field response | 2 | [`Sec_III/Fig_2`](Sec_III/Fig_2) | Zeeman splitting and effective g factors for fields along x, y, z |
+| Sec. IV: Electric-field response | 3 | [`Sec_IV/FIg_3`](Sec_IV/FIg_3) | Electric-field-induced band shifts, gap variation, quadratic Stark effect |
+| Sec. IV | 4 | [`Sec_IV/Fig_4`](Sec_IV/Fig_4) | Finite-field dispersion and Rashba splitting: numerics vs. linear-$k_x$ effective Hamiltonian (Pymablock) |
+| Sec. IV | 5 | [`Sec_IV/Fig_5`](Sec_IV/Fig_5) | Field and angular dependence of the Rashba coefficient and spin-orbit length |
+| Sec. IV | 6 | [`Sec_IV/Fig_6`](Sec_IV/Fig_6) | Validity region of the effective-Hamiltonian (Pymablock) description, from gap comparisons |
+| Sec. IV | 7 | [`Sec_IV/Fig_7`](Sec_IV/Fig_7) | Rashba modulation evaluated over the valid-region data |
+| Sec. V: Microscopic origin of Rashba coupling | 8 | [`Sec_V/Fig_8`](Sec_V/Fig_8) | Intermediate-subband contributions (`Ey/`, `Ez/`) and bulk-band weights (`overlap_function/`) |
+| Sec. V | 9 | [`Sec_V/Fig_9`](Sec_V/Fig_9) | Schematic virtual-coupling (selection-rule) diagrams |
+| App. B: Effective mass | 10 | [`App_B/Fig_10`](App_B/Fig_10) | Confinement dependence of the longitudinal effective mass |
+| App. H: Dominant states | 11 | [`App_H/Fig_11`](App_H/Fig_11) | Probability densities of the dominant states (figure exports only) |
+| Supplementary | n/a | [`Extra/comparing_k.p_bands_with_DFT`](Extra/comparing_k.p_bands_with_DFT) | $\mathbf{k}\cdot\mathbf{p}$ vs. DFT bulk bands and effective-mass fits |
 
-Additional bulk-band comparisons with density functional theory (DFT), together with effective-mass calculations, are in [compare_with_DFT_data](compare_with_DFT_data/).
+Figure numbers refer to the manuscript, not to numbering within a section.
 
-**The two Rashba treatments:** Section IV includes the transverse electric field in the reference Hamiltonian and expands in longitudinal momentum $k_x$. Section V treats both the electric field and momentum perturbatively in a weak-field Schrieffer–Wolff expansion. Their validity plots, therefore, test different approximations.
+Notes on specific folders:
 
-Figure folders also contain local Hamiltonian modules where needed, such as `Hamiltonian_mathematica.py`. These are Python modules. Keep each script with its accompanying module; similarly named modules in different folders should not be assumed interchangeable.
-
-The updated combined figure exports are [Fig-4.pdf](Sec_IV_Large_elctric_field/Rashba_Fig_4/Fig-4.pdf) and [Fig-5.pdf](Sec_IV_Large_elctric_field/Rashba_modulation_fig_5/Fig-5.pdf), with SVG versions in the same folders. For Figure 5, `plot_only_y_and_z_direction.ipynb` plots the field dependence for the y and z directions, while `peanut_plot.ipynb` plots the angular dependence in the yz plane. These notebooks also include spin-orbit-length plots. The angular convention is $\theta=0^\circ$ for a field along +z and $\theta=90^\circ$ for a field along +y.
-
-The DFT comparison folder contains `hamiltonian_bulk.py`, `main_numerical_eff_mass.py`, `band_fit.ipynb`, and the supplied bulk-band datasets.
+- **Sec_IV/Fig_5**: `plot_only_y_and_z_direction.ipynb` plots the field dependence for the y and z directions; `peanut_plot.ipynb` plots the angular dependence in the yz plane (both include spin-orbit-length plots). Convention: $\theta=0^\circ$ is a field along +z, $\theta=90^\circ$ along +y.
+- **Sec_V/Fig_8**: `Ey/` and `Ez/` each contain `main_n_max_with_eigsh_E*.py` and `plot_matrix_elements_data.ipynb`; the combined plot is `plot.ipynb`. `overlap_function/` contains `overlap.py` and `plot_weight.ipynb`.
+- **Sec_V/Fig_9**: `level_2x1_combined.ipynb` builds the two schematic panels (y-directed and z-directed couplings). Level positions are schematic, not to scale.
+- **Extra**: contains `hamiltonian_bulk.py`, `main_numerical_eff_mass.py`, `band_fit.ipynb`, and the supplied bulk-band datasets.
+- Folders contain local Hamiltonian modules (`Hamiltonian_mathematica.py`, `Hamiltonian_mathematica_v2.py`, `Hamiltonian_python.py`). Keep each script with its module; same-named modules in different folders are not interchangeable.
 
 ## Software and execution
 
-The inspected Python workflows use NumPy, SciPy, Matplotlib, Kwant, Pymablock, and tqdm, with Jupyter for the notebooks. MPI calculation scripts additionally use `mpi4py` and an MPI runtime. The `.wls` script requires a Wolfram Language installation. Requirements depend on the selected calculation; package versions are not pinned in this repository.
+The Python workflows use NumPy, SciPy, Matplotlib, Kwant, Pymablock, and tqdm, with Jupyter for the notebooks. MPI scripts additionally need mpi4py and an MPI runtime. The `.wls` script in `Sec_II/Fig_1` requires Wolfram Language. Package versions are not pinned.
 
-To inspect a result, open the relevant figure folder and view its existing plot exports. To regenerate a plot from saved data, open its plotting notebook with that folder as the working directory and review its input filenames and selected parameters.
+To regenerate a plot from saved data, open its notebook with that figure folder as the working directory. To rerun a calculation:
 
-To rerun a calculation:
-
-1. Review the script's parameters, including grid size, nanowire size, momentum range, field direction and strength, and process count.
-2. Run from the figure folder so that local imports and relative data paths resolve correctly.
-3. Check output filenames before execution: scripts may overwrite existing datasets.
-4. Use the corresponding notebook to plot the generated data.
-
-For example, after configuring the parameters and process count for Figure 1:
+1. Review the script's parameters (grid size `N`, nanowire size `L`, momentum range, field direction and strength, process count).
+2. Run from inside the figure folder so local imports and relative data paths resolve.
+3. Check output filenames first: scripts may overwrite existing datasets.
+4. Use the matching notebook to plot the new data.
 
 ```bash
-cd Sec_II_Bulkband_and_subband/Fig_1
+cd Sec_II/Fig_1
 python main_subband_parallelised.py
 ```
 
-Several scripts use multiprocessing or MPI. The included `.mpi` files are cluster-specific Slurm submission scripts; adapt their resource requests, environment paths, and launch commands to your computing environment.
+Several scripts use multiprocessing or MPI. The `.mpi` files are cluster-specific Slurm submission scripts; adapt resources, environment paths, and launch commands to your system.
 
-In the inspected nanowire scripts, lengths are expressed in angstroms and momenta in inverse angstroms; for example, `L = 300` corresponds to 30 nm. Electric-field inputs are converted between V/µm and V/Å, while plotted energies may be converted from eV to meV or µeV. Consult each script and dataset header for the precise convention. Current script defaults need not reproduce every stored parameter sweep without modification.
+Conventions: lengths are in angstroms and momenta in inverse angstroms (e.g. `L = 300` is 30 nm). Electric fields are converted between V/µm and V/Å; plotted energies may be in eV, meV, or µeV. Check each script and dataset header for the exact convention. Current script defaults need not reproduce every stored parameter sweep without modification.
 
-## Data and figure exports
+## Data and figure files
 
-- `.dat` files contain saved numerical datasets; column layouts and headers vary by calculation.
-- `.npy` files contain NumPy arrays, including the effective-mass data for Figure 12.
-- `.ipynb` files contain plotting and analysis code, sometimes with multiple figure variants.
-- `.pdf` and `.svg` files contain figure exports, component panels, or diagnostic plots.
+- `.dat`: saved numerical datasets; column layouts vary by calculation.
+- `.npy`: NumPy arrays (e.g. effective-mass data in `App_B/Fig_10`, bulk levels in `Sec_V/Fig_8`).
+- `.ipynb`: plotting and analysis notebooks, sometimes with several figure variants.
+- `.pdf`, `.svg`, `.png`: figure exports, panels, and diagnostic plots.
 
-Use the section and figure folder mapping to locate the relevant materials, rather than relying solely on an exported filename.
+## Citation
+
+See [`CITATION.cff`](CITATION.cff).
