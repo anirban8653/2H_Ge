@@ -29,17 +29,18 @@ t0 = time.time()
 # ---------------------------------
 # Parameters
 # ---------------------------------
-N = 50 
+N = 100 
 kx = 0.001 
 Nband = 10
-L_list = np.linspace(20,60,30)*10
+
 Ny = Nz = N
-emax_V_um = 7.0
-emax = emax_V_um * 1e-4
 flagy = 0
-ncore = 30
-sigma_val = 0.1
-Ef_values = np.linspace(0,emax,21)
+ncore = 50
+sigma_val = 0.12
+L_E_data = np.loadtxt("valid_regions_data.dat")
+# Columns: L [nm], E [V/um], gap [eV]. Each row is one (L, E) point to compute.
+# Convert to the code's units: L in Angstrom, Ef in V/Angstrom (1 V/um = 1e-4 V/A).
+L_E_data = np.atleast_2d(L_E_data)
 
 print(f"\nBuilding system for N = {N}")
 
@@ -146,6 +147,7 @@ def compute_one_L(L, Ef):
 
     # Pymablock returns a symbolic Zero for blocks that vanish identically
     # (e.g. the kx-linear term at Ef = 0 by inversion symmetry).
+
     H0 = np.asarray(Heff_coeffs[0, 0, 0], dtype=complex)
     H1 = Heff_coeffs[0, 0, 1]
     if isinstance(H1, np.ndarray):
@@ -176,7 +178,7 @@ def compute_one_task(args):
     return compute_one_L(*args)
 
 if __name__ == "__main__":
-    tasks = [(L, Ef) for L in L_list for Ef in Ef_values]
+    tasks = [(L_nm * 10.0, E_Vum * 1e-4) for L_nm, E_Vum, _ in L_E_data]
 
     with Pool(processes=min(ncore, len(tasks))) as pool:
         results = list(
@@ -193,7 +195,7 @@ if __name__ == "__main__":
     direction = "Y" if flagy == 1 else "Z"
     filename = (
         f"Pymablock_{direction}_kx{kx}"
-        f"_emax_{emax_V_um:.2f}_N{N}.dat"
+        f"_valid_regions_N{N}.dat"
     )
 
     header = "L_nm E_V_um alpha_eV_A gap_ueV_2nd"
