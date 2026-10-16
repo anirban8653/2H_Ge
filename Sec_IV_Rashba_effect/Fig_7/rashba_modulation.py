@@ -34,10 +34,16 @@ kx = 0.001
 Nband = 10
 
 Ny = Nz = N
-flagy = 0
+flagy = 1
 ncore = 50
 sigma_val = 0.12
-L_E_data = np.loadtxt("valid_regions_data.dat")
+
+if flagy == 1:
+    imported_file = "valid_regions_data_y.dat"
+else:
+    imported_file = "valid_regions_data_z.dat"
+
+L_E_data = np.loadtxt(imported_file)
 # Columns: L [nm], E [V/um], gap [eV]. Each row is one (L, E) point to compute.
 # Convert to the code's units: L in Angstrom, Ef in V/Angstrom (1 V/um = 1e-4 V/A).
 L_E_data = np.atleast_2d(L_E_data)

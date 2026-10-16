@@ -67,4 +67,4 @@ fi
 
 # One Python program creates the multiprocessing Pool
 # python3 hybridized_bands_self_consistent.py
-python3 rashba_modulatin.py
+python3 rashba_modulation.py
