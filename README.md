@@ -6,7 +6,7 @@ The calculations use a ten-band $\mathbf{k}\cdot\mathbf{p}$ Hamiltonian to study
 
 ## Repository layout and manuscript correspondence
 
-Top-level folders are named after the manuscript sections (`Sec_*`), appendices (`App_*`), and supplementary material (`Extra`). Each `Fig_N` folder holds the calculation scripts, saved data, plotting notebooks, and figure exports for manuscript Figure N. Folder names and capitalization below match the repository exactly (note `FIg_3`).
+Top-level folders are named after the manuscript sections (`Sec_*`), appendices (`App_B`, `Appendix_H`), and supplementary material (`Extra`). Each `Fig_N` folder holds the calculation scripts, saved data, plotting notebooks, and figure exports for manuscript Figure N; `Sec_V/Table_` holds the data for the parameter-sensitivity table. Folder names and capitalization below match the repository exactly (note `FIg_3`, `Appendix_H`, and `Table_`).
 
 | Manuscript part | Figure | Folder | Topic |
 | --- | --- | --- | --- |
@@ -19,8 +19,9 @@ Top-level folders are named after the manuscript sections (`Sec_*`), appendices 
 | Sec. IV | 7 | [`Sec_IV/Fig_7`](Sec_IV/Fig_7) | Rashba modulation evaluated over the valid-region data |
 | Sec. V: Microscopic origin of Rashba coupling | 8 | [`Sec_V/Fig_8`](Sec_V/Fig_8) | Intermediate-subband contributions (`Ey/`, `Ez/`) and bulk-band weights (`overlap_function/`) |
 | Sec. V | 9 | [`Sec_V/Fig_9`](Sec_V/Fig_9) | Schematic virtual-coupling (selection-rule) diagrams |
+| Sec. V | Table | [`Sec_V/Table_`](Sec_V/Table_) | Relative change of the Rashba splitting when individual k·p parameters ($P_\perp$, $A_5$, $A_6$, $\Delta_3$) are switched off |
 | App. B: Effective mass | 10 | [`App_B/Fig_10`](App_B/Fig_10) | Confinement dependence of the longitudinal effective mass |
-| App. H: Dominant states | 11 | [`App_H/Fig_11`](App_H/Fig_11) | Probability densities of the dominant states (figure exports only) |
+| App. H: Dominant states | 11 | [`Appendix_H/Fig_11`](Appendix_H/Fig_11) | Probability densities of the dominant states (figure exports only) |
 | Supplementary | n/a | [`Extra/comparing_k.p_bands_with_DFT`](Extra/comparing_k.p_bands_with_DFT) | $\mathbf{k}\cdot\mathbf{p}$ vs. DFT bulk bands and effective-mass fits |
 
 Figure numbers refer to the manuscript, not to numbering within a section.
@@ -28,14 +29,16 @@ Figure numbers refer to the manuscript, not to numbering within a section.
 Notes on specific folders:
 
 - **Sec_IV/Fig_5**: `plot_only_y_and_z_direction.ipynb` plots the field dependence for the y and z directions; `peanut_plot.ipynb` plots the angular dependence in the yz plane (both include spin-orbit-length plots). Convention: $\theta=0^\circ$ is a field along +z, $\theta=90^\circ$ along +y.
-- **Sec_V/Fig_8**: `Ey/` and `Ez/` each contain `main_n_max_with_eigsh_E*.py` and `plot_matrix_elements_data.ipynb`; the combined plot is `plot.ipynb`. `overlap_function/` contains `overlap.py` and `plot_weight.ipynb`.
+- **Sec_V/Fig_8**: `Ey/` and `Ez/` each contain `main_n_max_with_eigsh_E*.py` and `plot_matrix_elements_data.ipynb`; the combined plot is `plot.ipynb`. `overlap_function/` contains `overlap.py` and `plot_weight.ipynb`. The combined plot reads `paired_splitting_data_joined_N100_{y,z}.dat`, `overlap_data_N100.dat`, and `bulk_energy_o.dat`.
 - **Sec_V/Fig_9**: `level_2x1_combined.ipynb` builds the two schematic panels (y-directed and z-directed couplings). Level positions are schematic, not to scale.
+- **Sec_V/Table_**: `main_E_sweep.py` computes the splitting of the two states closest to $E=0$ at $k_x = 0.001$ Å⁻¹, $L = 300$ Å, and $E = 0.05$ V/µm along y and z, first with all parameters on and then with $P_\perp$, $A_5$, $A_6$, or $\Delta_3$ set to zero one at a time (via switches in `Hamiltonian_real_april.py`). Results are written to `relative_change_table_N{N}.dat`; tables for `N = 50` and `N = 100` are included.
+- **App_B/Fig_10**: `effcetive_mass.py` (filename as in the repository) computes the effective-mass data `eff_data.npy`; `plot.ipynb` plots it.
 - **Extra**: contains `hamiltonian_bulk.py`, `main_numerical_eff_mass.py`, `band_fit.ipynb`, and the supplied bulk-band datasets.
-- Folders contain local Hamiltonian modules (`Hamiltonian_mathematica.py`, `Hamiltonian_mathematica_v2.py`, `Hamiltonian_python.py`). Keep each script with its module; same-named modules in different folders are not interchangeable.
+- Folders contain local Hamiltonian modules (`Hamiltonian_mathematica.py`, `Hamiltonian_mathematica_v2.py`, `Hamiltonian_python.py`, `Hamiltonian_real_april.py`). Keep each script with its module; same-named modules in different folders are not interchangeable.
 
 ## Software and execution
 
-The Python workflows use NumPy, SciPy, Matplotlib, Kwant, Pymablock, and tqdm, with Jupyter for the notebooks. MPI scripts additionally need mpi4py and an MPI runtime. The `.wls` script in `Sec_II/Fig_1` requires Wolfram Language. Package versions are not pinned.
+The Python workflows use NumPy, SciPy, Matplotlib, Kwant, Pymablock, and tqdm, with Jupyter for the notebooks. The MPI script `Sec_IV/Fig_6/rashba_with_E_pymablock_kwant_mpi.py` additionally needs mpi4py and an MPI runtime. The `.wls` script in `Sec_II/Fig_1` requires Wolfram Language. Package versions are not pinned.
 
 To regenerate a plot from saved data, open its notebook with that figure folder as the working directory. To rerun a calculation:
 
@@ -56,7 +59,7 @@ Conventions: lengths are in angstroms and momenta in inverse angstroms (e.g. `L 
 ## Data and figure files
 
 - `.dat`: saved numerical datasets; column layouts vary by calculation.
-- `.npy`: NumPy arrays (e.g. effective-mass data in `App_B/Fig_10`, bulk levels in `Sec_V/Fig_8`).
+- `.npy`: NumPy arrays (e.g. effective-mass data in `App_B/Fig_10`, bulk levels in `Sec_V/Fig_8/Ey`).
 - `.ipynb`: plotting and analysis notebooks, sometimes with several figure variants.
 - `.pdf`, `.svg`, `.png`: figure exports, panels, and diagnostic plots.
 
