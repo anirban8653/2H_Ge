@@ -1,5 +1,7 @@
 # 2H-Ge nanowires: code, data, and figures
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23774497.svg)](https://doi.org/10.5281/zenodo.23774497)
+
 This repository contains numerical codes, datasets, plotting notebooks, and figure exports supporting the manuscript **"Spin-orbit interaction and g-tensor anisotropy of holes in nanowires of hexagonal germanium"** by Anirban Das, Baksa Kolok, Dániel Varjas, and András Pályi.
 
 The calculations use a ten-band $\mathbf{k}\cdot\mathbf{p}$ Hamiltonian to study confined hole states in hexagonal germanium (2H-Ge) nanowires: band structure, anisotropic magnetic response, electric-field-induced Stark shifts and Rashba splitting, and the microscopic origin of the Rashba coupling.
@@ -69,4 +71,4 @@ Conventions: lengths are in angstroms and momenta in inverse angstroms (e.g. `L 
 
 ## Citation
 
-See [`CITATION.cff`](CITATION.cff).
+The code and data are archived on Zenodo: [doi:10.5281/zenodo.23774497](https://doi.org/10.5281/zenodo.23774497). If you use them, please cite this archive together with the accompanying paper; see [`CITATION.cff`](CITATION.cff) for full metadata.
