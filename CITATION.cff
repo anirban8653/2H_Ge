@@ -1,14 +1,60 @@
 cff-version: 1.2.0
-message: "If you use this code and data, please cite the related paper."
+message: "If you use this code or data, please cite both the software archive and the related paper."
 type: software
-title: "2H_Ge: Codes and data for calculations of hexagonal germanium nanowire"
+title: "2H_Ge: Codes and data for calculations of hexagonal germanium nanowires"
+abstract: >-
+  Numerical codes, datasets, plotting notebooks and figure exports supporting the
+  manuscript "Spin-orbit interaction and g-tensor anisotropy of holes in nanowires
+  of hexagonal germanium". The calculations use a ten-band k·p Hamiltonian,
+  discretized with Kwant and analysed with Pymablock, to study confined hole states
+  in 2H-Ge nanowires: subband structure, g-tensor anisotropy, electric-field-induced
+  Stark shifts and Rashba splitting, and the microscopic origin of the Rashba coupling.
 authors:
   - family-names: "Das"
     given-names: "Anirban"
+    affiliation: "Budapest University of Technology and Economics"
+    email: "das.anirban@ttk.bme.hu"
+    # orcid: "https://orcid.org/0000-0000-0000-0000"
   - family-names: "Kolok"
     given-names: "Baksa"
+    affiliation: "Budapest University of Technology and Economics"
   - family-names: "Varjas"
-    given-names: "Daniel"
-  - family-names: "Palyi"
-    given-names: "Andras"
+    given-names: "Dániel"
+    affiliation: "Budapest University of Technology and Economics"
+  - family-names: "Pályi"
+    given-names: "András"
+    affiliation: "Budapest University of Technology and Economics"
 repository-code: "https://github.com/anirban8653/2H_Ge"
+license: MIT
+version: "1.0.0"
+date-released: "2026-10-29"
+keywords:
+  - hexagonal germanium
+  - 2H-Ge
+  - nanowires
+  - k·p method
+  - hole spin qubits
+  - g-tensor
+  - Rashba spin-orbit interaction
+  - Stark effect
+  - Kwant
+  - Pymablock
+# Uncomment once Zenodo has assigned the concept DOI:
+# doi: "10.5281/zenodo.XXXXXXX"
+preferred-citation:
+  type: article
+  title: "Spin-orbit interaction and g-tensor anisotropy of holes in nanowires of hexagonal germanium"
+  authors:
+    - family-names: "Das"
+      given-names: "Anirban"
+    - family-names: "Kolok"
+      given-names: "Baksa"
+    - family-names: "Varjas"
+      given-names: "Dániel"
+    - family-names: "Pályi"
+      given-names: "András"
+  year: 2026
+  # Fill in once available:
+  # journal: "Physical Review B"
+  # doi: "10.1103/..."
+  # url: "https://arxiv.org/abs/XXXX.XXXXX"
