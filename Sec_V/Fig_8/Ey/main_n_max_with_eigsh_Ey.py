@@ -234,7 +234,7 @@ print(f"cb energy range: {E_conduction[0]:.4f} -- {E_conduction[-1]:.4f} eV")
 
 
 splittings = []
-prefactor = kx * Ef_values[0]   # Ey = 0.6e-5
+prefactor = kx * Ef_values[0]   # Ey = 0.5e-5
 
 
 # ==========================================================
