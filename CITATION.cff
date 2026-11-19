@@ -26,8 +26,8 @@ authors:
     affiliation: "Department of Theoretical Physics, Budapest University of Technology and Economics"
 repository-code: "https://github.com/anirban8653/2H_Ge"
 license: MIT
-version: "1.0.0"
-date-released: "2026-10-29"
+version: "1.1.0"
+date-released: "2026-11-19"
 keywords:
   - hexagonal germanium
   - 2H-Ge
