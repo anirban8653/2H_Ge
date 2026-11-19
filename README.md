@@ -1,6 +1,6 @@
 # 2H-Ge nanowires: code, data, and figures
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23774497.svg)](https://doi.org/10.5281/zenodo.23774497)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23774496.svg)](https://doi.org/10.5281/zenodo.23774496)
 
 This repository contains numerical codes, datasets, plotting notebooks, and figure exports supporting the manuscript **"Spin-orbit interaction and g-tensor anisotropy of holes in nanowires of hexagonal germanium"** by Anirban Das, Baksa Kolok, Dániel Varjas, and András Pályi.
 
@@ -72,4 +72,4 @@ Conventions: lengths are in angstroms and momenta in inverse angstroms (e.g. `L 
 
 ## Citation
 
-The code and data are archived on Zenodo: [doi:10.5281/zenodo.23774497](https://doi.org/10.5281/zenodo.23774497). If you use them, please cite this archive together with the accompanying paper; see [`CITATION.cff`](CITATION.cff) for full metadata.
+The code and data are archived on Zenodo: [doi:10.5281/zenodo.23774496](https://doi.org/10.5281/zenodo.23774496). If you use them, please cite this archive together with the accompanying paper; see [`CITATION.cff`](CITATION.cff) for full metadata.
