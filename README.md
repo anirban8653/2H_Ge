@@ -30,6 +30,7 @@ Figure numbers refer to the manuscript, not to numbering within a section.
 
 Notes on specific folders:
 
+- **Sec_III/Fig_2**: `gfactor_Bx_signed_vs_L.py`, `gfactor_By_signed_vs_L.py` and `gfactor_Bz_signed_vs_L.py` compute the signed g factors versus nanowire size for fields along x, y and z; `g_factor_plot.ipynb` plots them. Datasets (`g{xx,yy,zz}_signed_vs_L_N100.dat`) are in `output_data/`; exports (`Zeeman_splittings_signed.*`, `g{xx,yy,zz}_signed_vs_L_N100.png`) are in `plots/`.
 - **Sec_IV/FIg_3**: `main_band_shift.py` and `main_gap.py` compute the field-dependent bands and gaps; `bands_plot.ipynb` and `plot_gap_variation.ipynb` plot them. Band data (`band_data_{y,z}_E*_size100_nk*.dat`) and gap data (`gap_variation_{y,z}_field.dat`) are in `data/`; exports (`Fig-3`, `gap_variation`, `bands_electrci_field_*`, `band_evolution_vs_Ey_*`) are in `plots/`.
 - **Sec_IV/Fig_5**: `plot_only_y_and_z_direction.ipynb` plots the field dependence for the y and z directions; `peanut_plot.ipynb` plots the angular dependence in the yz plane (both include spin-orbit-length plots). Convention: $\theta=0^\circ$ is a field along +z, $\theta=90^\circ$ along +y.
 - **Sec_IV/Fig_7**: `rashba_modulation.py` evaluates the Rashba coefficient over the valid-region data; `plot.ipynb` produces `Fig-7` and `Fig-7-new`. Inputs (`valid_regions_data_{y,z}.dat`, `Pymablock_{Y,Z}_kx0.001_valid_regions_N100.dat`, `eff_data.npy`) are in `data/`; exports are in `plots/`.
