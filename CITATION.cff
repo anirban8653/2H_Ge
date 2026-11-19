@@ -39,10 +39,10 @@ keywords:
   - Stark effect
   - Kwant
   - Pymablock
-doi: "10.5281/zenodo.23774497"
+doi: "10.5281/zenodo.23774496"
 identifiers:
   - type: doi
-    value: "10.5281/zenodo.23774497"
+    value: "10.5281/zenodo.23774496"
     description: "Zenodo archive"
 preferred-citation:
   type: article
